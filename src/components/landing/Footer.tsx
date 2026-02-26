@@ -15,7 +15,7 @@ export function Footer() {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left flex flex-col items-center md:items-start">
-              <img src={logo} alt="NextPhase IT Logo" className="h-12 md:h-14 w-auto mb-3" />
+              <img src={logo} alt="NextPhase IT Logo" className="h-16 md:h-20 w-auto mb-3" />
               <p className="text-secondary text-sm">Business Systems & Automation Consultancy</p>
               <p className="text-secondary text-sm mt-1">Founder: Lewes</p>
             </div>
