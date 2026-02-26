@@ -11,6 +11,13 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 
 ## Essential Features
 
+### Header Navigation
+- **Functionality**: Sticky header with brand name and prominent CTA button
+- **Purpose**: Maintain brand presence and conversion opportunity throughout page scroll
+- **Trigger**: Page load, persistent on scroll
+- **Progression**: Always visible → Quick access to booking
+- **Success criteria**: Sticky positioning, responsive on mobile, accessible CTA
+
 ### Hero Section
 - **Functionality**: Presents core value proposition with primary CTA
 - **Purpose**: Immediately communicate what NextPhase IT does and for whom
@@ -46,12 +53,26 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Progression**: Visitor sees results → Calculates own potential value → Motivated to act
 - **Success criteria**: Outcomes are concrete and quantifiable
 
+### Testimonials Section
+- **Functionality**: Displays client testimonials with names, roles, and companies
+- **Purpose**: Build trust and credibility through social proof
+- **Trigger**: Scroll after outcomes
+- **Progression**: Visitor sees results → Reads real client experiences → Trust increases
+- **Success criteria**: Authentic testimonials, professional presentation, UK-based clients
+
 ### Target Client Section
 - **Functionality**: Clarifies ideal client profile
 - **Purpose**: Help visitors self-qualify and feel "this is for me"
 - **Trigger**: Nearing end of page
 - **Progression**: Visitor checks if they fit → Confirms alignment → Ready to book
 - **Success criteria**: Clear client profiles that resonate with target market
+
+### FAQ Section
+- **Functionality**: Accordion-style frequently asked questions
+- **Purpose**: Address common objections and concerns proactively
+- **Trigger**: Scroll near end of page
+- **Progression**: Visitor has questions → Finds answers → Objections resolved → Ready to act
+- **Success criteria**: Comprehensive coverage of pricing, process, and integration concerns
 
 ### Final CTA Section
 - **Functionality**: Strong closing call-to-action
@@ -68,11 +89,13 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Success criteria**: Professional, complete business information
 
 ## Edge Case Handling
-- **Mobile viewport**: Responsive layout adapts cleanly to all screen sizes
+- **Mobile viewport**: Responsive layout adapts cleanly to all screen sizes, header CTA text shortens on small screens
 - **Long content sections**: Proper spacing prevents overwhelming walls of text
 - **CTA clicks**: Placeholder Calendly link ready to be replaced with real booking URL
 - **Slow connections**: Minimal assets ensure fast load times
 - **Accessibility**: Semantic HTML and proper heading hierarchy for screen readers
+- **Accordion interactions**: FAQ accordion allows single item open at a time for focused reading
+- **Scroll behavior**: Smooth scrolling enabled for better UX
 
 ## Design Direction
 The design should evoke **enterprise credibility, operational precision, and professional competence**. This is not a flashy tech startup—it's a serious business consultancy for serious business owners. The aesthetic should feel like walking into a well-organized, efficient office: clean, structured, and confidence-inspiring.
@@ -109,25 +132,31 @@ Typography should project **clarity, professionalism, and modern business compet
 Animations should be **nearly invisible**—serving clarity and feedback, never decoration. Subtle hover state transitions (200ms) on interactive elements. Smooth scroll behavior for anchor links. No page load animations, no floating elements, no attention-seeking motion. Every transition should feel like the natural physics of a well-built interface.
 
 ## Component Selection
-- **Components**: Custom-built components using Shadcn primitives where appropriate (Button, Card)
+- **Components**: Custom-built components using Shadcn primitives where appropriate (Button, Card, Accordion)
 - **Customizations**: 
+  - Sticky header with brand and CTA
   - Hero section with centered content and prominent CTA
   - Problem section with icon + text list items
   - Solution section with service cards in grid layout
   - Process section with numbered step cards
   - Outcomes section with metric/result cards
+  - Testimonials section with quote cards in 3-column grid
   - Target client section with profile cards
+  - FAQ section with Accordion component for collapsible Q&A
   - Final CTA section with strong closing statement
   - Footer with business details and copyright
 - **States**: 
   - Buttons: Default with accent blue, hover with darker blue, active with slight scale
   - Cards: Subtle border, hover with slight shadow lift
   - Links: Underline on hover
-- **Icon Selection**: Phosphor icons for clean, professional iconography (CheckCircle, X, ArrowRight, Calendar, ChartLine, Users, Gear, ClipboardText)
+  - Accordion: Smooth expand/collapse animations
+- **Icon Selection**: Phosphor icons for clean, professional iconography (CheckCircle, X, ArrowRight, Calendar, ChartLine, Users, Gear, ClipboardText, Quotes)
 - **Spacing**: Consistent section spacing (py-16 md:py-24), card spacing (p-6 md:p-8), element spacing (gap-4, gap-6, gap-8)
 - **Mobile**: 
   - Single column layout on mobile
   - Full-width CTAs on small screens
+  - Header CTA text shortens ("Book" instead of "Book Free Audit")
   - Reduced heading sizes (text-3xl → text-4xl → text-5xl)
   - Stack cards vertically below md breakpoint
+  - Testimonials stack in single column on mobile
   - Maintain generous spacing even on mobile for readability
