@@ -1,53 +1,48 @@
-import { Card } from "@/components/ui/card"
-import { MagnifyingGlass, Wrench, GraduationCap } from "@phosphor-icons/react"
+import { MagnifyingGlass, Wrench, GraduationCap, CheckCircle } from "@phosphor-icons/react"
 
 export function Process() {
   const steps = [
-    {
-      number: "1",
-      icon: MagnifyingGlass,
-      title: "Systems Audit",
-      description: "We analyse your current operations, identify bottlenecks, and map out what systems you need to scale efficiently."
-    },
-    {
-      number: "2",
-      icon: Wrench,
-      title: "Custom Build & Deployment",
-      description: "We design and build tailored systems that fit your business perfectly, then deploy them with full data migration and testing."
-    },
-    {
-      number: "3",
-      icon: GraduationCap,
-      title: "Training & Optimisation",
-      description: "Your team gets hands-on training, and we provide ongoing support to refine workflows and ensure adoption."
-    }
+    { icon: MagnifyingGlass, title: "Audit", description: "Analyse operations & identify bottlenecks" },
+    { icon: Wrench, title: "Build", description: "Deploy custom systems with full migration" },
+    { icon: GraduationCap, title: "Train", description: "Hands-on training & ongoing support" }
+  ]
+
+  const outcomes = [
+    "5–10 hours saved weekly",
+    "Clear job & cash flow visibility",
+    "Faster invoicing cycles"
   ]
 
   return (
-    <section className="py-16 md:py-24 px-4 bg-muted">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center mb-6">
-          Our 3-Step Process
+    <section className="py-12 md:py-16 px-4">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-8">
+          How We Work & What Changes
         </h2>
         
-        <p className="text-lg text-secondary text-center mb-12 max-w-2xl mx-auto leading-relaxed">
-          From initial assessment to full operational transformation, we guide you through every stage.
-        </p>
-        
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
           {steps.map((step, index) => {
             const Icon = step.icon
             return (
-              <Card key={index} className="p-8 border border-border bg-background relative">
-                <div className="absolute -top-4 left-8 bg-accent text-accent-foreground w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold">
-                  {step.number}
-                </div>
-                <Icon className="text-accent mb-4 mt-4" size={48} weight="duotone" />
-                <h3 className="text-2xl font-semibold text-foreground mb-3">{step.title}</h3>
-                <p className="text-secondary leading-relaxed">{step.description}</p>
-              </Card>
+              <div key={index} className="text-center">
+                <Icon className="text-accent mb-3 mx-auto" size={40} weight="duotone" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
+                <p className="text-sm text-secondary">{step.description}</p>
+              </div>
             )
           })}
+        </div>
+        
+        <div className="border-t border-border pt-8">
+          <h3 className="text-xl font-semibold text-foreground text-center mb-6">Expected Results</h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            {outcomes.map((outcome, index) => (
+              <div key={index} className="flex items-center gap-3 justify-center">
+                <CheckCircle className="text-accent flex-shrink-0" size={24} weight="fill" />
+                <span className="text-secondary">{outcome}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
