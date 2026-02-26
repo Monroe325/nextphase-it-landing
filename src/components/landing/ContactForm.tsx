@@ -27,10 +27,26 @@ export function ContactForm() {
     company: "",
     message: ""
   })
+  const [honeypot, setHoneypot] = useState("")
+  const [formLoadTime] = useState(Date.now())
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+
+    if (honeypot) {
+      setIsSubmitting(false)
+      return
+    }
+
+    const timeSinceLoad = Date.now() - formLoadTime
+    if (timeSinceLoad < 3000) {
+      toast.error("Please slow down", {
+        description: "Please take a moment to review your message."
+      })
+      setIsSubmitting(false)
+      return
+    }
 
     const submission: ContactSubmission = {
       id: Date.now().toString(),
@@ -64,6 +80,17 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto space-y-6">
+      <input
+        type="text"
+        name="website"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        className="absolute -left-[9999px] w-1 h-1 opacity-0 pointer-events-none"
+        aria-hidden="true"
+      />
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="name" className="text-foreground font-medium">
