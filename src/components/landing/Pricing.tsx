@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { CheckCircle, Calendar } from "@phosphor-icons/react"
+import { CheckCircle, Calendar, X, Check } from "@phosphor-icons/react"
 
 export function Pricing() {
   const tiers = [
@@ -117,9 +117,98 @@ export function Pricing() {
           ))}
         </div>
         
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-center text-sm text-muted-foreground mb-16">
           All packages include VAT. Custom quotes available for complex multi-system projects.
         </p>
+
+        <div className="mt-20">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-3">
+            DIY vs NextPhase IT
+          </h3>
+          
+          <p className="text-lg text-secondary text-center mb-10 max-w-2xl mx-auto leading-relaxed">
+            Building systems in-house seems cheaper upfront, but hidden costs add up quickly.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="p-6 md:p-8 border border-border bg-muted/30">
+              <div className="mb-6">
+                <h4 className="text-xl font-bold text-foreground mb-2">DIY Approach</h4>
+                <p className="text-sm text-muted-foreground">Building and maintaining systems yourself</p>
+              </div>
+
+              <ul className="space-y-3">
+                {[
+                  { text: "3-6 months to build", cost: "£15,000 - £30,000 in staff time" },
+                  { text: "No expertise guarantee", cost: "Risk of poor architecture" },
+                  { text: "Ongoing maintenance burden", cost: "£500 - £2,000/month" },
+                  { text: "Trial and error learning", cost: "Productivity loss" },
+                  { text: "Integration challenges", cost: "Additional development time" },
+                  { text: "No training or documentation", cost: "Team confusion" },
+                  { text: "System breaks require urgent fixes", cost: "Business disruption" }
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 pb-3 border-b border-border/50">
+                    <X className="text-destructive mt-0.5 flex-shrink-0" size={20} weight="bold" />
+                    <div className="flex-1">
+                      <span className="text-foreground text-sm font-medium block">{item.text}</span>
+                      <span className="text-muted-foreground text-xs">{item.cost}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 pt-6 border-t border-border">
+                <p className="text-lg font-bold text-foreground">Total Cost (Year 1)</p>
+                <p className="text-3xl font-bold text-destructive mt-1">£21,000 - £54,000</p>
+                <p className="text-xs text-muted-foreground mt-2">Plus opportunity cost and ongoing maintenance</p>
+              </div>
+            </Card>
+
+            <Card className="p-6 md:p-8 border-2 border-accent bg-background shadow-lg">
+              <div className="mb-6">
+                <h4 className="text-xl font-bold text-foreground mb-2">NextPhase IT</h4>
+                <p className="text-sm text-muted-foreground">Professional systems built right, first time</p>
+              </div>
+
+              <ul className="space-y-3">
+                {[
+                  { text: "4-6 weeks to deployment", cost: "Fast time to value" },
+                  { text: "Proven architecture & best practices", cost: "Expert design" },
+                  { text: "Fully documented & supported", cost: "Peace of mind included" },
+                  { text: "Complete team training", cost: "Everyone knows how to use it" },
+                  { text: "Tested integrations", cost: "Systems work together" },
+                  { text: "30-90 days support included", cost: "No surprises" },
+                  { text: "Built to scale with your business", cost: "Future-proof investment" }
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 pb-3 border-b border-border/50">
+                    <Check className="text-accent mt-0.5 flex-shrink-0" size={20} weight="bold" />
+                    <div className="flex-1">
+                      <span className="text-foreground text-sm font-medium block">{item.text}</span>
+                      <span className="text-muted-foreground text-xs">{item.cost}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 pt-6 border-t border-border">
+                <p className="text-lg font-bold text-foreground">Total Cost (Year 1)</p>
+                <p className="text-3xl font-bold text-accent mt-1">£3,500 - £7,500</p>
+                <p className="text-xs text-muted-foreground mt-2">Complete solution with training and support</p>
+              </div>
+            </Card>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Card className="inline-block p-6 bg-accent/10 border-accent/30">
+              <p className="text-lg font-bold text-foreground mb-1">
+                Save £17,500 - £46,500 in Year 1
+              </p>
+              <p className="text-sm text-secondary">
+                Plus regain 5-10 hours per week for strategic work instead of system maintenance
+              </p>
+            </Card>
+          </div>
+        </div>
       </div>
     </section>
   )
