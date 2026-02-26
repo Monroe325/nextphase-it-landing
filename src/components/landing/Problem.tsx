@@ -1,4 +1,4 @@
-import { X, CheckCircle } from "@phosphor-icons/react"
+import { X, CheckCircle, Tabs } from "@phosphor-icons/react"
 import { ScrollIndicator } from "./ScrollIndicator"
 
 export function Problem() {
@@ -48,7 +48,13 @@ export function Problem() {
         </div>
       </div>
 
-      <ScrollIndicator targetId="tabs-section" variant="section" />
+      <ScrollIndicator 
+        targetId="tabs-section" 
+        variant="section"
+        previewTitle="Explore Our Approach"
+        previewDescription="Interactive tabs with process, pricing, ROI calculator, and FAQ"
+        previewIcon={<Tabs size={20} weight="duotone" />}
+      />
     </section>
   )
 }

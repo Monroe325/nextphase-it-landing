@@ -1,4 +1,4 @@
-import { Calendar } from "@phosphor-icons/react"
+import { Calendar, X, CheckCircle } from "@phosphor-icons/react"
 import { Button } from "@/components/ui/button"
 import { ScrollIndicator } from "./ScrollIndicator"
 
@@ -23,7 +23,14 @@ export function Hero() {
           Book a Free Systems Audit
         </Button>
 
-        <ScrollIndicator targetId="problem-section" label="See How We Help" variant="hero" />
+        <ScrollIndicator 
+          targetId="problem-section" 
+          label="See How We Help" 
+          variant="hero"
+          previewTitle="From Chaos to Structure"
+          previewDescription="See the challenges we solve and the systems we build for UK businesses"
+          previewIcon={<CheckCircle size={20} weight="fill" />}
+        />
       </div>
     </section>
   )

@@ -704,7 +704,13 @@ export function InteractiveTabs() {
         </Tabs>
       </div>
 
-      <ScrollIndicator targetId="cta-section" variant="section" />
+      <ScrollIndicator 
+        targetId="cta-section" 
+        variant="section"
+        previewTitle="Ready to Transform?"
+        previewDescription="Book a free systems audit or send us a message to get started"
+        previewIcon={<Calendar size={20} weight="duotone" />}
+      />
     </section>
   )
 }
