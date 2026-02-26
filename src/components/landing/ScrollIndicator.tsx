@@ -58,26 +58,29 @@ export function ScrollIndicator({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full mt-4 bg-card border-2 border-accent/30 rounded-lg shadow-xl p-4 w-64 z-50 pointer-events-none"
+              className="absolute top-full mt-4 bg-gradient-to-br from-accent/10 via-card to-card border-2 border-accent/50 rounded-xl shadow-2xl p-5 w-64 z-50 pointer-events-none backdrop-blur-sm"
+              style={{
+                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(99, 102, 241, 0.1)'
+              }}
             >
               <div className="flex items-start gap-3">
                 {previewIcon && (
-                  <div className="text-accent flex-shrink-0 mt-0.5">
+                  <div className="text-accent flex-shrink-0 mt-0.5 bg-accent/10 p-2 rounded-lg">
                     {previewIcon}
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-sm text-foreground mb-1 leading-tight">
+                  <h4 className="font-semibold text-sm text-foreground mb-1.5 leading-tight">
                     {previewTitle}
                   </h4>
                   {previewDescription && (
-                    <p className="text-xs text-muted-foreground leading-snug">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       {previewDescription}
                     </p>
                   )}
                 </div>
               </div>
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-card border-t-2 border-l-2 border-accent/30 rotate-45"></div>
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-accent/10 via-card to-card border-t-2 border-l-2 border-accent/50 rotate-45"></div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -113,26 +116,29 @@ export function ScrollIndicator({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full mt-3 bg-card border-2 border-accent/30 rounded-lg shadow-xl p-4 w-64 pointer-events-none"
+            className="absolute top-full mt-3 bg-gradient-to-br from-accent/10 via-card to-card border-2 border-accent/50 rounded-xl shadow-2xl p-5 w-64 pointer-events-none backdrop-blur-sm"
+            style={{
+              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(99, 102, 241, 0.1)'
+            }}
           >
             <div className="flex items-start gap-3">
               {previewIcon && (
-                <div className="text-accent flex-shrink-0 mt-0.5">
+                <div className="text-accent flex-shrink-0 mt-0.5 bg-accent/10 p-2 rounded-lg">
                   {previewIcon}
                 </div>
               )}
               <div className="flex-1 min-w-0">
-                <h4 className="font-semibold text-sm text-foreground mb-1 leading-tight">
+                <h4 className="font-semibold text-sm text-foreground mb-1.5 leading-tight">
                   {previewTitle}
                 </h4>
                 {previewDescription && (
-                  <p className="text-xs text-muted-foreground leading-snug">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     {previewDescription}
                   </p>
                 )}
               </div>
             </div>
-            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-card border-t-2 border-l-2 border-accent/30 rotate-45"></div>
+            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-accent/10 via-card to-card border-t-2 border-l-2 border-accent/50 rotate-45"></div>
           </motion.div>
         )}
       </AnimatePresence>
