@@ -1,9 +1,11 @@
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
-import { ArrowRight, CheckCircle, TrendUp, Wrench, HardHat, Hammer, Users, Briefcase } from "@phosphor-icons/react"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, CheckCircle, TrendUp, Wrench, HardHat, Hammer, Users, Briefcase, Link as LinkIcon, Check } from "@phosphor-icons/react"
+import { toast } from "sonner"
 
 type IndustryTemplate = {
   id: string
@@ -101,6 +103,29 @@ export function ROICalculator() {
   const [jobsPerMonth, setJobsPerMonth] = useState(25)
   const [lostJobsPerMonth, setLostJobsPerMonth] = useState(2)
   const [avgJobValue, setAvgJobValue] = useState(800)
+  const [linkCopied, setLinkCopied] = useState(false)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const roiData = params.get('roi')
+    
+    if (roiData) {
+      try {
+        const decoded = JSON.parse(atob(roiData))
+        setSelectedIndustry(decoded.industry || null)
+        setEmployeeCount(decoded.employees || 5)
+        setHoursPerWeekAdmin(decoded.hours || 10)
+        setAvgHourlyRate(decoded.rate || 35)
+        setJobsPerMonth(decoded.jobs || 25)
+        setLostJobsPerMonth(decoded.lost || 2)
+        setAvgJobValue(decoded.value || 800)
+        
+        toast.success("ROI calculation loaded from shared link")
+      } catch (e) {
+        console.error("Failed to parse ROI data from URL", e)
+      }
+    }
+  }, [])
 
   const applyTemplate = (template: IndustryTemplate) => {
     setSelectedIndustry(template.id)
@@ -110,6 +135,39 @@ export function ROICalculator() {
     setJobsPerMonth(template.defaults.jobsPerMonth)
     setLostJobsPerMonth(template.defaults.lostJobsPerMonth)
     setAvgJobValue(template.defaults.avgJobValue)
+  }
+
+  const generateShareableLink = () => {
+    const data = {
+      industry: selectedIndustry,
+      employees: employeeCount,
+      hours: hoursPerWeekAdmin,
+      rate: avgHourlyRate,
+      jobs: jobsPerMonth,
+      lost: lostJobsPerMonth,
+      value: avgJobValue
+    }
+    
+    const encoded = btoa(JSON.stringify(data))
+    const url = new URL(window.location.href)
+    url.searchParams.set('roi', encoded)
+    url.hash = 'roi-calculator'
+    
+    return url.toString()
+  }
+
+  const copyShareLink = async () => {
+    const link = generateShareableLink()
+    
+    try {
+      await navigator.clipboard.writeText(link)
+      setLinkCopied(true)
+      toast.success("Link copied to clipboard!")
+      
+      setTimeout(() => setLinkCopied(false), 3000)
+    } catch (err) {
+      toast.error("Failed to copy link")
+    }
   }
 
   const calculations = useMemo(() => {
@@ -162,7 +220,7 @@ export function ROICalculator() {
   }
 
   return (
-    <section className="py-16 md:py-24 px-4 bg-muted/30">
+    <section id="roi-calculator" className="py-16 md:py-24 px-4 bg-muted/30">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
@@ -316,9 +374,29 @@ export function ROICalculator() {
 
           <div className="space-y-6">
             <Card className="p-6 md:p-8 border-2 border-accent bg-background shadow-lg">
-              <div className="flex items-center gap-3 mb-6">
-                <TrendUp className="text-accent" size={28} weight="duotone" />
-                <h3 className="text-xl font-bold text-foreground">Your Projected Impact</h3>
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <TrendUp className="text-accent" size={28} weight="duotone" />
+                  <h3 className="text-xl font-bold text-foreground">Your Projected Impact</h3>
+                </div>
+                <Button
+                  onClick={copyShareLink}
+                  variant="outline"
+                  size="sm"
+                  className="gap-2"
+                >
+                  {linkCopied ? (
+                    <>
+                      <Check size={16} weight="bold" />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <LinkIcon size={16} weight="bold" />
+                      Share
+                    </>
+                  )}
+                </Button>
               </div>
 
               <div className="space-y-4 mb-6">

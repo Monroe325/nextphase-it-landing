@@ -54,11 +54,11 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Success criteria**: Clear differentiation between tiers, transparent pricing, obvious value propositions, "Most Popular" tier highlighted
 
 ### ROI Calculator Section
-- **Functionality**: Interactive calculator allowing visitors to input their business metrics and see projected savings and ROI
+- **Functionality**: Interactive calculator allowing visitors to input their business metrics and see projected savings and ROI, with shareable links for custom calculations
 - **Purpose**: Provide concrete, personalized financial justification for the investment decision
-- **Trigger**: Scroll after pricing section
-- **Progression**: Visitor sees pricing → Uses calculator with their own numbers → Sees personalized ROI projections → Understands tangible value → Motivated to take action
-- **Success criteria**: Intuitive inputs (sliders and number fields), real-time calculation updates, clear display of savings breakdown, compelling ROI presentation, CTA button at bottom
+- **Trigger**: Scroll after pricing section, or direct link with pre-filled values via URL parameter
+- **Progression**: Visitor sees pricing → Uses calculator with their own numbers (or loads shared calculation) → Sees personalized ROI projections → Clicks share button → Copies shareable link → Shares with colleagues or saves for later → Understands tangible value → Motivated to take action
+- **Success criteria**: Intuitive inputs (sliders and number fields), real-time calculation updates, clear display of savings breakdown, compelling ROI presentation, URL parameter loading on page load, share button copies link to clipboard with toast confirmation, shareable links include all input values and selected industry template, CTA button at bottom
 
 ### Outcomes Section
 - **Functionality**: Presents specific, measurable results
@@ -113,6 +113,9 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Accordion interactions**: FAQ accordion allows single item open at a time for focused reading
 - **Scroll behavior**: Smooth scrolling enabled for better UX
 - **Tab switching**: Seamless switching between booking and contact form options in Hero and FinalCTA sections
+- **ROI Calculator URL sharing**: Invalid or malformed URL parameters gracefully fall back to default values without breaking the calculator
+- **ROI Calculator link copying**: Fallback messaging if clipboard API fails, success confirmation via toast notification
+- **Shared ROI links**: Page automatically scrolls to calculator section when shared link is loaded
 
 ## Design Direction
 The design should evoke **enterprise credibility, operational precision, and professional competence**. This is not a flashy tech startup—it's a serious business consultancy for serious business owners. The aesthetic should feel like walking into a well-organized, efficient office: clean, structured, and confidence-inspiring.
@@ -158,7 +161,7 @@ Animations should be **nearly invisible**—serving clarity and feedback, never 
   - Solution section with service cards in grid layout
   - Process section with numbered step cards
   - Pricing section with three-tier package table (Systems Audit, Core Build, Enterprise Build) featuring highlighted "Most Popular" option, feature lists with checkmarks, and clear CTA buttons
-  - ROI Calculator section with interactive inputs (sliders for employees/hours/lost jobs, number inputs for rates/values), real-time calculation display showing current waste vs potential savings, detailed breakdown of gains (time reclaimed, jobs captured, invoicing improvements), first-year ROI projection with payback timeline, and CTA button
+  - ROI Calculator section with interactive inputs (sliders for employees/hours/lost jobs, number inputs for rates/values), real-time calculation display showing current waste vs potential savings, detailed breakdown of gains (time reclaimed, jobs captured, invoicing improvements), first-year ROI projection with payback timeline, share button to generate and copy shareable links with pre-filled values, automatic loading of shared calculations from URL parameters, and CTA button
   - Outcomes section with metric/result cards
   - Testimonials section with quote cards in 3-column grid
   - Target client section with profile cards
