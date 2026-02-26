@@ -19,9 +19,11 @@ import {
   CheckCircle,
   XCircle,
   Clock,
-  TrendUp
+  TrendUp,
+  Envelope
 } from "@phosphor-icons/react"
 import type { AuthUser } from "@/components/auth/AuthModal"
+import { EmailNotificationsView } from "@/components/admin/EmailNotificationsView"
 
 interface AdminPortalProps {
   onBackToHome: () => void
@@ -176,6 +178,10 @@ export function AdminPortal({ onBackToHome }: AdminPortalProps) {
             <TabsTrigger value="notifications">
               <Bell className="mr-2" size={18} />
               <span className="hidden sm:inline">Alerts</span>
+            </TabsTrigger>
+            <TabsTrigger value="emails">
+              <Envelope className="mr-2" size={18} />
+              <span className="hidden sm:inline">Emails</span>
             </TabsTrigger>
           </TabsList>
 
@@ -475,6 +481,10 @@ export function AdminPortal({ onBackToHome }: AdminPortalProps) {
                 ))}
               </div>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="emails" className="space-y-6">
+            <EmailNotificationsView />
           </TabsContent>
         </Tabs>
       </div>

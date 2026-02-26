@@ -12,11 +12,20 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 ## Essential Features
 
 ### Authentication System
-- **Functionality**: Secure login/signup system with role-based access (Client/Admin)
-- **Purpose**: Provide secure access to personalized portals for clients and administrative oversight for staff
-- **Trigger**: Click "Sign Up / Login" button in header
-- **Progression**: User clicks button → Modal opens → Chooses login or signup → Enters credentials → Validates → Redirects to appropriate portal based on role
-- **Success criteria**: Secure authentication flow, role-based routing, persistent sessions using useKV, password validation, error handling
+- **Functionality**: Secure login/signup system with role-based access (Client/Admin), password reset functionality, and automated email notifications
+- **Purpose**: Provide secure access to personalized portals for clients and administrative oversight for staff, with secure password recovery and automated communication
+- **Trigger**: Click "Sign Up / Login" button in header, or "Forgot password?" link on login form
+- **Progression**: User clicks button → Modal opens → Chooses login, signup, or password reset → Enters credentials/reset email → Validates → Receives email notification → Redirects to appropriate portal based on role (or completes password reset flow)
+- **Success criteria**: 
+  - Secure authentication flow with role-based routing
+  - Persistent sessions using useKV
+  - Password validation (minimum 8 characters)
+  - Error handling with helpful messages
+  - Password reset flow with 6-digit token sent via email
+  - Token expiration after 1 hour
+  - Email notifications for: welcome (signup), password reset request, password changed confirmation, login alerts
+  - All email notifications logged and viewable in admin portal
+  - Password reset tokens stored securely and invalidated after use
 
 ### Header Navigation
 - **Functionality**: Sticky header with brand name, prominent CTA button, and authentication button
@@ -116,10 +125,10 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
   - Mobile-responsive layout, secure data access, persistent state across sessions
 
 ### Admin Portal
-- **Functionality**: Comprehensive administrative dashboard with full system oversight and management capabilities
-- **Purpose**: Enable NextPhase IT staff to manage users, monitor all activities, track leads, oversee projects, and analyze business metrics
+- **Functionality**: Comprehensive administrative dashboard with full system oversight and management capabilities, including email notification monitoring
+- **Purpose**: Enable NextPhase IT staff to manage users, monitor all activities, track leads, oversee projects, analyze business metrics, and review all automated email communications
 - **Trigger**: Successful login with admin role
-- **Progression**: Admin logs in → Views system overview dashboard → Navigates sections (Users, Conversations, Bookings, Projects, Leads, Invoices, Analytics, Notifications) → Performs administrative tasks
+- **Progression**: Admin logs in → Views system overview dashboard → Navigates sections (Users, Conversations, Bookings, Projects, Leads, Invoices, Analytics, Notifications, Emails) → Performs administrative tasks
 - **Success criteria**:
   - User management interface to view, edit, suspend/activate client accounts with search and filtering
   - Complete conversation transcript access across all clients with search functionality
@@ -129,6 +138,7 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
   - Invoice and payment monitoring with status tracking, overdue alerts, and financial summaries
   - Analytics dashboard displaying traffic sources, conversion rates, booking trends, and revenue metrics
   - Notification center with real-time alerts for signups, bookings, messages, payments, and system events
+  - Email notifications tab displaying all automated emails sent by the system (welcome, password reset, password changed, login alerts) with filtering by type, timestamps, recipients, and full email content preview
   - Secure admin-only access with audit logging, export capabilities, mobile-responsive interface
 
 ### Footer

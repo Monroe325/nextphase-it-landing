@@ -7,6 +7,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useKV } from "@github/spark/hooks"
 import { toast } from "sonner"
 import { User, Lock } from "@phosphor-icons/react"
+import { PasswordResetModal } from "./PasswordResetModal"
+import { EmailService } from "@/lib/emailService"
 
 interface AuthModalProps {
   open: boolean
@@ -31,6 +33,7 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
   const [signupPassword, setSignupPassword] = useState("")
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [resetModalOpen, setResetModalOpen] = useState(false)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -45,6 +48,8 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
       setIsLoading(false)
       return
     }
+
+    await EmailService.sendLoginAlertEmail(user.email, user.name)
 
     toast.success(`Welcome back, ${user.name}!`)
     onAuthSuccess(user)
@@ -88,6 +93,8 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
     }
 
     setUsers((current) => [...(current || []), newUser])
+    
+    await EmailService.sendWelcomeEmail(newUser.email, newUser.name)
     
     toast.success("Account created successfully!")
     onAuthSuccess(newUser)
@@ -148,6 +155,18 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
               
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
+              </Button>
+              
+              <Button
+                type="button"
+                variant="link"
+                className="w-full text-sm"
+                onClick={() => {
+                  onOpenChange(false)
+                  setResetModalOpen(true)
+                }}
+              >
+                Forgot password?
               </Button>
               
               <p className="text-xs text-center text-muted-foreground">
@@ -229,6 +248,7 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
           </TabsContent>
         </Tabs>
       </DialogContent>
+      <PasswordResetModal open={resetModalOpen} onOpenChange={setResetModalOpen} />
     </Dialog>
   )
 }
