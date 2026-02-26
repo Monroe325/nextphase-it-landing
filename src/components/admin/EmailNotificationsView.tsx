@@ -32,6 +32,8 @@ export function EmailNotificationsView() {
         return 'bg-blue-100 text-blue-800 border-blue-300'
       case 'login-alert':
         return 'bg-purple-100 text-purple-800 border-purple-300'
+      case 'email-verification':
+        return 'bg-orange-100 text-orange-800 border-orange-300'
       default:
         return 'bg-gray-100 text-gray-800 border-gray-300'
     }
@@ -52,6 +54,7 @@ export function EmailNotificationsView() {
   const emailCounts = {
     all: emails.length,
     welcome: emails.filter(e => e.type === 'welcome').length,
+    'email-verification': emails.filter(e => e.type === 'email-verification').length,
     'password-reset': emails.filter(e => e.type === 'password-reset').length,
     'password-changed': emails.filter(e => e.type === 'password-changed').length,
     'login-alert': emails.filter(e => e.type === 'login-alert').length,
@@ -65,12 +68,15 @@ export function EmailNotificationsView() {
       </div>
 
       <Tabs value={selectedType} onValueChange={setSelectedType}>
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="all">
             All ({emailCounts.all})
           </TabsTrigger>
           <TabsTrigger value="welcome">
             Welcome ({emailCounts.welcome})
+          </TabsTrigger>
+          <TabsTrigger value="email-verification">
+            Verify ({emailCounts['email-verification']})
           </TabsTrigger>
           <TabsTrigger value="password-reset">
             Reset ({emailCounts['password-reset']})

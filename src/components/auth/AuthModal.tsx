@@ -6,8 +6,9 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useKV } from "@github/spark/hooks"
 import { toast } from "sonner"
-import { User, Lock } from "@phosphor-icons/react"
+import { User, Lock, Warning } from "@phosphor-icons/react"
 import { PasswordResetModal } from "./PasswordResetModal"
+import { EmailVerificationModal } from "./EmailVerificationModal"
 import { EmailService } from "@/lib/emailService"
 
 interface AuthModalProps {
@@ -22,6 +23,7 @@ export interface AuthUser {
   name: string
   role: "client" | "admin"
   createdAt: string
+  emailVerified?: boolean
 }
 
 export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps) {
@@ -34,6 +36,8 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [resetModalOpen, setResetModalOpen] = useState(false)
+  const [verificationModalOpen, setVerificationModalOpen] = useState(false)
+  const [pendingUser, setPendingUser] = useState<{ email: string; name: string; userId: string } | null>(null)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,6 +50,19 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
     if (!user) {
       toast.error("Invalid email or password")
       setIsLoading(false)
+      return
+    }
+
+    if (!user.emailVerified) {
+      toast.error("Please verify your email before logging in", {
+        description: "Check your inbox for the verification code"
+      })
+      setPendingUser({ email: user.email, name: user.name, userId: user.id })
+      setLoginEmail("")
+      setLoginPassword("")
+      setIsLoading(false)
+      onOpenChange(false)
+      setVerificationModalOpen(true)
       return
     }
 
@@ -89,21 +106,39 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
       email: signupEmail.toLowerCase(),
       name: signupName,
       role: "client",
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
+      emailVerified: false
     }
 
     setUsers((current) => [...(current || []), newUser])
     
-    await EmailService.sendWelcomeEmail(newUser.email, newUser.name)
-    
-    toast.success("Account created successfully!")
-    onAuthSuccess(newUser)
-    onOpenChange(false)
+    toast.success("Account created! Please verify your email.", {
+      description: "Check your inbox for the verification code"
+    })
+
+    setPendingUser({ email: newUser.email, name: newUser.name, userId: newUser.id })
     setSignupName("")
     setSignupEmail("")
     setSignupPassword("")
     setSignupConfirmPassword("")
     setIsLoading(false)
+    onOpenChange(false)
+    setVerificationModalOpen(true)
+  }
+
+  const handleVerificationComplete = async () => {
+    if (!pendingUser) return
+
+    const updatedUsers = await window.spark.kv.get<AuthUser[]>("auth-users") || []
+    const verifiedUser = updatedUsers.find(u => u.id === pendingUser.userId)
+
+    if (verifiedUser) {
+      await EmailService.sendWelcomeEmail(verifiedUser.email, verifiedUser.name)
+      toast.success("Email verified successfully! Welcome to NextPhase IT")
+      onAuthSuccess(verifiedUser)
+    }
+
+    setPendingUser(null)
   }
 
   return (
@@ -177,6 +212,13 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
           
           <TabsContent value="signup">
             <form onSubmit={handleSignup} className="space-y-4 mt-4">
+              <div className="bg-muted/50 border border-border rounded-lg p-3 flex items-start gap-2">
+                <Warning size={20} className="text-accent mt-0.5 flex-shrink-0" weight="duotone" />
+                <p className="text-xs text-muted-foreground">
+                  You'll need to verify your email address before you can log in
+                </p>
+              </div>
+              
               <div className="space-y-2">
                 <Label htmlFor="signup-name">Full Name</Label>
                 <Input
@@ -249,6 +291,16 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
         </Tabs>
       </DialogContent>
       <PasswordResetModal open={resetModalOpen} onOpenChange={setResetModalOpen} />
+      {pendingUser && (
+        <EmailVerificationModal 
+          open={verificationModalOpen}
+          onOpenChange={setVerificationModalOpen}
+          email={pendingUser.email}
+          name={pendingUser.name}
+          userId={pendingUser.userId}
+          onVerificationComplete={handleVerificationComplete}
+        />
+      )}
     </Dialog>
   )
 }

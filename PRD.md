@@ -12,20 +12,25 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 ## Essential Features
 
 ### Authentication System
-- **Functionality**: Secure login/signup system with role-based access (Client/Admin), password reset functionality, and automated email notifications
-- **Purpose**: Provide secure access to personalized portals for clients and administrative oversight for staff, with secure password recovery and automated communication
+- **Functionality**: Secure login/signup system with role-based access (Client/Admin), email verification for new signups, password reset functionality, and automated email notifications
+- **Purpose**: Provide secure access to personalized portals for clients and administrative oversight for staff, ensure email ownership verification, secure password recovery, and automated communication
 - **Trigger**: Click "Sign Up / Login" button in header, or "Forgot password?" link on login form
-- **Progression**: User clicks button → Modal opens → Chooses login, signup, or password reset → Enters credentials/reset email → Validates → Receives email notification → Redirects to appropriate portal based on role (or completes password reset flow)
+- **Progression**: User clicks button → Modal opens → Chooses login, signup, or password reset → Enters credentials/reset email → Validates → For new signups: receives verification email with 6-digit code → enters code in verification modal → email verified → receives welcome email → redirects to portal; For login: checks email verification → if unverified, prompts for verification → if verified, sends login alert → redirects to appropriate portal based on role
 - **Success criteria**: 
   - Secure authentication flow with role-based routing
   - Persistent sessions using useKV
   - Password validation (minimum 8 characters)
   - Error handling with helpful messages
+  - Email verification required for new signups with 6-digit code
+  - Verification tokens expire after 24 hours
+  - Ability to resend verification codes
+  - Login blocked until email is verified
   - Password reset flow with 6-digit token sent via email
-  - Token expiration after 1 hour
-  - Email notifications for: welcome (signup), password reset request, password changed confirmation, login alerts
-  - All email notifications logged and viewable in admin portal
-  - Password reset tokens stored securely and invalidated after use
+  - Password reset tokens expire after 1 hour
+  - Email notifications for: email verification (signup), welcome (after verification), password reset request, password changed confirmation, login alerts
+  - All email notifications logged and viewable in admin portal with filter for verification emails
+  - Verification and password reset tokens stored securely and invalidated after use
+  - Clear user messaging about verification requirement during signup and login attempts
 
 ### Header Navigation
 - **Functionality**: Sticky header with brand name, prominent CTA button, and authentication button

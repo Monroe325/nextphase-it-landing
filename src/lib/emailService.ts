@@ -4,7 +4,7 @@ export interface EmailNotification {
   subject: string
   body: string
   sentAt: string
-  type: 'welcome' | 'password-reset' | 'password-changed' | 'login-alert'
+  type: 'welcome' | 'password-reset' | 'password-changed' | 'login-alert' | 'email-verification'
 }
 
 export class EmailService {
@@ -105,6 +105,28 @@ Time: ${timestamp}
 If this was you, you can safely ignore this email.
 
 If you didn't log in, please contact us immediately at info@nextphaseit.co.uk and consider changing your password.
+
+Best regards,
+The NextPhase IT Team`
+    })
+  }
+
+  static async sendVerificationEmail(email: string, name: string, verificationCode: string): Promise<void> {
+    await this.sendEmail({
+      to: email,
+      subject: 'Verify Your Email - NextPhase IT',
+      type: 'email-verification',
+      body: `Hi ${name},
+
+Thank you for signing up for NextPhase IT!
+
+Please verify your email address to complete your registration and access your client portal.
+
+Your verification code is: ${verificationCode}
+
+This code will expire in 24 hours.
+
+If you didn't create this account, please ignore this email.
 
 Best regards,
 The NextPhase IT Team`

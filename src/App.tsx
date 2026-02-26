@@ -26,7 +26,8 @@ function App() {
           email: "admin@nextphaseit.co.uk",
           name: "Admin User",
           role: "admin",
-          createdAt: new Date().toISOString()
+          createdAt: new Date().toISOString(),
+          emailVerified: true
         }
         await window.spark.kv.set("auth-users", [adminUser])
       }
