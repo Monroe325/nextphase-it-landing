@@ -14,23 +14,25 @@ export function Hero() {
           Custom CRM, workflow automation, and operational systems for UK trades and service businesses.
         </p>
         
-        <Button 
-          size="lg" 
-          className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-5 h-auto transition-all duration-200"
-          onClick={() => window.open('https://calendly.com/nextphaseit', '_blank')}
-        >
-          <Calendar className="mr-2" size={20} />
-          Book a Free Systems Audit
-        </Button>
+        <div className="flex flex-col items-center gap-4">
+          <Button 
+            size="lg" 
+            className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-5 h-auto transition-all duration-200"
+            onClick={() => window.open('https://calendly.com/nextphaseit', '_blank')}
+          >
+            <Calendar className="mr-2" size={20} />
+            Book a Free Systems Audit
+          </Button>
 
-        <ScrollIndicator 
-          targetId="problem-section" 
-          label="See How We Help" 
-          variant="hero"
-          previewTitle="From Chaos to Structure"
-          previewDescription="See the challenges we solve and the systems we build for UK businesses"
-          previewIcon={<CheckCircle size={20} weight="fill" />}
-        />
+          <ScrollIndicator 
+            targetId="problem-section" 
+            label="See How We Help" 
+            variant="hero"
+            previewTitle="From Chaos to Structure"
+            previewDescription="See the challenges we solve and the systems we build for UK businesses"
+            previewIcon={<CheckCircle size={20} weight="fill" />}
+          />
+        </div>
       </div>
     </section>
   )
