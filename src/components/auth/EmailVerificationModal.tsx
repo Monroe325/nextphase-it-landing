@@ -34,12 +34,22 @@ export function EmailVerificationModal({
   const [verificationCode, setVerificationCode] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isResending, setIsResending] = useState(false)
+  const [countdown, setCountdown] = useState(0)
 
   useEffect(() => {
     if (open) {
       sendVerificationCode()
     }
   }, [open])
+
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1)
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [countdown])
 
   const generateVerificationCode = (): string => {
     return Math.floor(100000 + Math.random() * 900000).toString()
@@ -62,9 +72,12 @@ export function EmailVerificationModal({
     
     await window.spark.kv.set('verification-tokens', [...filteredTokens, token])
     await EmailService.sendVerificationEmail(email, name, code)
+    setCountdown(60)
   }
 
   const handleResendCode = async () => {
+    if (countdown > 0) return
+    
     setIsResending(true)
     await sendVerificationCode()
     toast.success("Verification code resent to your email")
@@ -160,9 +173,9 @@ export function EmailVerificationModal({
               variant="link"
               className="text-sm"
               onClick={handleResendCode}
-              disabled={isResending}
+              disabled={isResending || countdown > 0}
             >
-              {isResending ? "Sending..." : "Didn't receive the code? Resend"}
+              {isResending ? "Sending..." : countdown > 0 ? `Resend code in ${countdown}s` : "Didn't receive the code? Resend"}
             </Button>
           </div>
         </form>
