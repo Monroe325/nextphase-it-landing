@@ -4,7 +4,7 @@ export interface EmailNotification {
   subject: string
   body: string
   sentAt: string
-  type: 'welcome' | 'password-reset' | 'password-changed' | 'login-alert' | 'email-verification'
+  type: 'welcome' | 'password-reset' | 'password-changed' | 'login-alert' | 'email-verification' | 'admin-welcome'
 }
 
 export class EmailService {
@@ -127,6 +127,41 @@ Your verification code is: ${verificationCode}
 This code will expire in 24 hours.
 
 If you didn't create this account, please ignore this email.
+
+Best regards,
+The NextPhase IT Team`
+    })
+  }
+
+  static async sendAdminWelcomeEmail(email: string, name: string, role: 'admin' | 'client'): Promise<void> {
+    await this.sendEmail({
+      to: email,
+      subject: `Your ${role === 'admin' ? 'Administrator' : 'Client'} Account - NextPhase IT`,
+      type: 'admin-welcome',
+      body: `Hi ${name},
+
+${role === 'admin' ? 'An administrator account has been created for you at NextPhase IT.' : 'A client account has been created for you at NextPhase IT.'}
+
+${role === 'admin' ? `As an administrator, you have full access to:
+- System overview and analytics
+- User management
+- All conversations and messages
+- Booking management
+- Project oversight
+- Lead tracking and pipeline
+- Invoice and payment monitoring
+- Email notification history` : `As a client, you can now access your portal to:
+- View your project status and milestones
+- Book or reschedule audit calls
+- Access your documents and invoices
+- Message our team directly
+- Track your project progress in real-time`}
+
+Email: ${email}
+
+You can log in at any time using your email address.
+
+If you have any questions, feel free to reach out to us at info@nextphaseit.co.uk
 
 Best regards,
 The NextPhase IT Team`

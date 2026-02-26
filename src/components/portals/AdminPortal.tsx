@@ -20,10 +20,12 @@ import {
   XCircle,
   Clock,
   TrendUp,
-  Envelope
+  Envelope,
+  ShieldCheck
 } from "@phosphor-icons/react"
 import type { AuthUser } from "@/components/auth/AuthModal"
 import { EmailNotificationsView } from "@/components/admin/EmailNotificationsView"
+import { AdminUserManagement } from "@/components/admin/AdminUserManagement"
 
 interface AdminPortalProps {
   onBackToHome: () => void
@@ -146,7 +148,7 @@ export function AdminPortal({ onBackToHome }: AdminPortalProps) {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 lg:w-auto lg:inline-grid">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-9 lg:w-auto lg:inline-grid">
             <TabsTrigger value="overview">
               <ChartLine className="mr-2" size={18} />
               <span className="hidden sm:inline">Overview</span>
@@ -154,6 +156,10 @@ export function AdminPortal({ onBackToHome }: AdminPortalProps) {
             <TabsTrigger value="users">
               <Users className="mr-2" size={18} />
               <span className="hidden sm:inline">Users</span>
+            </TabsTrigger>
+            <TabsTrigger value="admin-management">
+              <ShieldCheck className="mr-2" size={18} />
+              <span className="hidden sm:inline">Admins</span>
             </TabsTrigger>
             <TabsTrigger value="conversations">
               <Chat className="mr-2" size={18} />
@@ -311,6 +317,10 @@ export function AdminPortal({ onBackToHome }: AdminPortalProps) {
                 )}
               </div>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="admin-management" className="space-y-6">
+            <AdminUserManagement />
           </TabsContent>
 
           <TabsContent value="conversations" className="space-y-6">
