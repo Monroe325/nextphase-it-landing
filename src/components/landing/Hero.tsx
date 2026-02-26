@@ -1,5 +1,6 @@
 import { Calendar } from "@phosphor-icons/react"
 import { Button } from "@/components/ui/button"
+import { ScrollIndicator } from "./ScrollIndicator"
 
 export function Hero() {
   return (
@@ -21,6 +22,8 @@ export function Hero() {
           <Calendar className="mr-2" size={20} />
           Book a Free Systems Audit
         </Button>
+
+        <ScrollIndicator targetId="problem-section" label="See How We Help" variant="hero" />
       </div>
     </section>
   )

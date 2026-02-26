@@ -1,4 +1,5 @@
 import { X, CheckCircle } from "@phosphor-icons/react"
+import { ScrollIndicator } from "./ScrollIndicator"
 
 export function Problem() {
   const painPoints = [
@@ -14,7 +15,7 @@ export function Problem() {
   ]
 
   return (
-    <section className="py-8 md:py-12 px-4 bg-muted">
+    <section id="problem-section" className="py-8 md:py-12 px-4 bg-muted relative">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-6">
           From Operational Chaos to Structured Systems
@@ -46,6 +47,8 @@ export function Problem() {
           </div>
         </div>
       </div>
+
+      <ScrollIndicator targetId="tabs-section" variant="section" />
     </section>
   )
 }

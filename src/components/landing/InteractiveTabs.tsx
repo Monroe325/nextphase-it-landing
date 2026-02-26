@@ -28,6 +28,7 @@ import {
 import { useState, useMemo, useEffect } from "react"
 import { toast } from "sonner"
 import { ShareButtons } from "./ShareButtons"
+import { ScrollIndicator } from "./ScrollIndicator"
 
 type IndustryTemplate = {
   id: string
@@ -317,7 +318,7 @@ export function InteractiveTabs() {
   ]
 
   return (
-    <section className="py-12 md:py-16 px-4">
+    <section id="tabs-section" className="py-12 md:py-16 px-4 relative">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-8">
           Explore Our Approach
@@ -702,6 +703,8 @@ export function InteractiveTabs() {
           </TabsContent>
         </Tabs>
       </div>
+
+      <ScrollIndicator targetId="cta-section" variant="section" />
     </section>
   )
 }

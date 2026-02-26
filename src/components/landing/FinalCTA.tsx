@@ -4,7 +4,7 @@ import { ContactForm } from "./ContactForm"
 
 export function FinalCTA() {
   return (
-    <section className="py-10 md:py-14 px-4 bg-muted">
+    <section id="cta-section" className="py-10 md:py-14 px-4 bg-muted">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
           Ready to Transform Your Operations?
