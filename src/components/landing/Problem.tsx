@@ -51,8 +51,8 @@ export function Problem() {
       <ScrollIndicator 
         targetId="tabs-section" 
         variant="section"
-        previewTitle="Explore Our Approach"
-        previewDescription="Interactive tabs with process, pricing, ROI calculator, and FAQ"
+        previewTitle="Explore Our Full Approach"
+        previewDescription="3-step process, transparent pricing, ROI calculator to see your potential savings, and answers to common questions"
         previewIcon={<Tabs size={20} weight="duotone" />}
       />
     </section>

@@ -28,8 +28,8 @@ export function Hero() {
             targetId="problem-section" 
             label="See How We Help" 
             variant="hero"
-            previewTitle="From Chaos to Structure"
-            previewDescription="See the challenges we solve and the systems we build for UK businesses"
+            previewTitle="Operational Chaos vs Structured Systems"
+            previewDescription="Compare common business pain points with our proven solutions—see how we eliminate inefficiency"
             previewIcon={<CheckCircle size={20} weight="fill" />}
           />
         </div>

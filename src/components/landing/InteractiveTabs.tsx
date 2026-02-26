@@ -707,8 +707,8 @@ export function InteractiveTabs() {
       <ScrollIndicator 
         targetId="cta-section" 
         variant="section"
-        previewTitle="Ready to Transform?"
-        previewDescription="Book a free systems audit or send us a message to get started"
+        previewTitle="Ready to Get Started?"
+        previewDescription="Book your free systems audit or contact us directly—take the first step toward operational clarity"
         previewIcon={<Calendar size={20} weight="duotone" />}
       />
     </section>
