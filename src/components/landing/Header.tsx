@@ -18,9 +18,9 @@ export function Header({ onAuthClick, onAdminClick, onLogout, currentUser }: Hea
             src={logo}
             alt="NextPhase IT"
             style={{
-              height: '70px',
+              height: '85px',
               width: 'auto',
-              maxWidth: '280px',
+              maxWidth: '320px',
               objectFit: 'contain'
             }}
           />
