@@ -9,6 +9,7 @@ import { TargetClient } from "@/components/landing/TargetClient"
 import { FAQ } from "@/components/landing/FAQ"
 import { FinalCTA } from "@/components/landing/FinalCTA"
 import { Footer } from "@/components/landing/Footer"
+import { Toaster } from "@/components/ui/sonner"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <FAQ />
       <FinalCTA />
       <Footer />
+      <Toaster />
     </div>
   )
 }

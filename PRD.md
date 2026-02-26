@@ -19,11 +19,11 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Success criteria**: Sticky positioning, responsive on mobile, accessible CTA
 
 ### Hero Section
-- **Functionality**: Presents core value proposition with primary CTA
-- **Purpose**: Immediately communicate what NextPhase IT does and for whom
+- **Functionality**: Presents core value proposition with primary CTA options
+- **Purpose**: Immediately communicate what NextPhase IT does and provide multiple contact methods
 - **Trigger**: Page load
-- **Progression**: Visitor lands → Reads headline → Understands service → Clicks CTA
-- **Success criteria**: Clear value prop, visible CTA button, professional first impression
+- **Progression**: Visitor lands → Reads headline → Understands service → Chooses contact method (book call or send message) → Takes action
+- **Success criteria**: Clear value prop, visible CTA options with tabs, professional first impression, contact form persists submissions
 
 ### Problem Section
 - **Functionality**: Articulates common pain points of target audience
@@ -75,11 +75,11 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Success criteria**: Comprehensive coverage of pricing, process, and integration concerns
 
 ### Final CTA Section
-- **Functionality**: Strong closing call-to-action
-- **Purpose**: Convert interested visitors to booked consultations
+- **Functionality**: Strong closing call-to-action with multiple contact options
+- **Purpose**: Convert interested visitors to booked consultations or contact form submissions
 - **Trigger**: End of content journey
-- **Progression**: Visitor convinced → Sees CTA → Clicks to book
-- **Success criteria**: CTA is compelling and action-oriented
+- **Progression**: Visitor convinced → Sees CTA options → Chooses preferred contact method → Takes action
+- **Success criteria**: CTA is compelling and action-oriented, contact form available as alternative, submissions persist
 
 ### Footer
 - **Functionality**: Standard footer with business information
@@ -92,10 +92,13 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Mobile viewport**: Responsive layout adapts cleanly to all screen sizes, header CTA text shortens on small screens
 - **Long content sections**: Proper spacing prevents overwhelming walls of text
 - **CTA clicks**: Placeholder Calendly link ready to be replaced with real booking URL
+- **Contact form submissions**: Form data persists using useKV, toast notifications confirm successful submission, form clears after submission
+- **Form validation**: Required fields (name, email, message) enforced with native HTML5 validation
 - **Slow connections**: Minimal assets ensure fast load times
-- **Accessibility**: Semantic HTML and proper heading hierarchy for screen readers
+- **Accessibility**: Semantic HTML and proper heading hierarchy for screen readers, form labels properly associated with inputs
 - **Accordion interactions**: FAQ accordion allows single item open at a time for focused reading
 - **Scroll behavior**: Smooth scrolling enabled for better UX
+- **Tab switching**: Seamless switching between booking and contact form options in Hero and FinalCTA sections
 
 ## Design Direction
 The design should evoke **enterprise credibility, operational precision, and professional competence**. This is not a flashy tech startup—it's a serious business consultancy for serious business owners. The aesthetic should feel like walking into a well-organized, efficient office: clean, structured, and confidence-inspiring.
@@ -132,10 +135,11 @@ Typography should project **clarity, professionalism, and modern business compet
 Animations should be **nearly invisible**—serving clarity and feedback, never decoration. Subtle hover state transitions (200ms) on interactive elements. Smooth scroll behavior for anchor links. No page load animations, no floating elements, no attention-seeking motion. Every transition should feel like the natural physics of a well-built interface.
 
 ## Component Selection
-- **Components**: Custom-built components using Shadcn primitives where appropriate (Button, Card, Accordion)
+- **Components**: Custom-built components using Shadcn primitives where appropriate (Button, Card, Accordion, Tabs, Input, Textarea, Label)
 - **Customizations**: 
   - Sticky header with brand and CTA
-  - Hero section with centered content and prominent CTA
+  - Hero section with centered content and tabbed CTA options (Book Call / Send Message)
+  - Contact form with validation and persistence (stores submissions in useKV)
   - Problem section with icon + text list items
   - Solution section with service cards in grid layout
   - Process section with numbered step cards
@@ -143,14 +147,18 @@ Animations should be **nearly invisible**—serving clarity and feedback, never 
   - Testimonials section with quote cards in 3-column grid
   - Target client section with profile cards
   - FAQ section with Accordion component for collapsible Q&A
-  - Final CTA section with strong closing statement
+  - Final CTA section with strong closing statement and tabbed contact options
   - Footer with business details and copyright
+  - Toast notifications via Sonner for form submission feedback
 - **States**: 
-  - Buttons: Default with accent blue, hover with darker blue, active with slight scale
+  - Buttons: Default with accent blue, hover with darker blue, active with slight scale, disabled state for form submission
   - Cards: Subtle border, hover with slight shadow lift
   - Links: Underline on hover
   - Accordion: Smooth expand/collapse animations
-- **Icon Selection**: Phosphor icons for clean, professional iconography (CheckCircle, X, ArrowRight, Calendar, ChartLine, Users, Gear, ClipboardText, Quotes)
+  - Tabs: Active/inactive states with smooth transitions
+  - Form inputs: Focus states with ring, error states for validation
+  - Form submission: Loading state with disabled button
+- **Icon Selection**: Phosphor icons for clean, professional iconography (CheckCircle, X, ArrowRight, Calendar, Envelope, PaperPlaneRight, ChartLine, Users, Gear, ClipboardText, Quotes)
 - **Spacing**: Consistent section spacing (py-16 md:py-24), card spacing (p-6 md:p-8), element spacing (gap-4, gap-6, gap-8)
 - **Mobile**: 
   - Single column layout on mobile
@@ -159,4 +167,5 @@ Animations should be **nearly invisible**—serving clarity and feedback, never 
   - Reduced heading sizes (text-3xl → text-4xl → text-5xl)
   - Stack cards vertically below md breakpoint
   - Testimonials stack in single column on mobile
+  - Contact form fields stack vertically on mobile
   - Maintain generous spacing even on mobile for readability
