@@ -38,6 +38,8 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
   const [resetModalOpen, setResetModalOpen] = useState(false)
   const [verificationModalOpen, setVerificationModalOpen] = useState(false)
   const [pendingUser, setPendingUser] = useState<{ email: string; name: string; userId: string } | null>(null)
+  const [showUnverifiedMessage, setShowUnverifiedMessage] = useState(false)
+  const [unverifiedUserInfo, setUnverifiedUserInfo] = useState<{ email: string; name: string; userId: string } | null>(null)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -50,6 +52,8 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
     if (!user) {
       toast.error("Invalid email or password")
       setIsLoading(false)
+      setShowUnverifiedMessage(false)
+      setUnverifiedUserInfo(null)
       return
     }
 
@@ -57,12 +61,9 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
       toast.error("Please verify your email before logging in", {
         description: "Check your inbox for the verification code"
       })
-      setPendingUser({ email: user.email, name: user.name, userId: user.id })
-      setLoginEmail("")
-      setLoginPassword("")
+      setUnverifiedUserInfo({ email: user.email, name: user.name, userId: user.id })
+      setShowUnverifiedMessage(true)
       setIsLoading(false)
-      onOpenChange(false)
-      setVerificationModalOpen(true)
       return
     }
 
@@ -74,6 +75,8 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
     setLoginEmail("")
     setLoginPassword("")
     setIsLoading(false)
+    setShowUnverifiedMessage(false)
+    setUnverifiedUserInfo(null)
   }
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -141,6 +144,14 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
     setPendingUser(null)
   }
 
+  const handleResendVerificationCode = async () => {
+    if (!unverifiedUserInfo) return
+    
+    setPendingUser(unverifiedUserInfo)
+    setVerificationModalOpen(true)
+    setShowUnverifiedMessage(false)
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
@@ -156,6 +167,29 @@ export function AuthModal({ open, onOpenChange, onAuthSuccess }: AuthModalProps)
           
           <TabsContent value="login">
             <form onSubmit={handleLogin} className="space-y-4 mt-4">
+              {showUnverifiedMessage && unverifiedUserInfo && (
+                <div className="bg-accent/10 border border-accent/30 rounded-lg p-3 flex flex-col gap-2">
+                  <div className="flex items-start gap-2">
+                    <Warning size={20} className="text-accent mt-0.5 flex-shrink-0" weight="duotone" />
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-foreground">Email Not Verified</p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Your account exists but needs verification. Check your email for the verification code.
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    className="w-full"
+                    onClick={handleResendVerificationCode}
+                  >
+                    Resend Verification Code
+                  </Button>
+                </div>
+              )}
+              
               <div className="space-y-2">
                 <Label htmlFor="login-email">Email</Label>
                 <div className="relative">
