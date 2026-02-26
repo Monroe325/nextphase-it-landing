@@ -7,6 +7,7 @@ import { FinalCTA } from "@/components/landing/FinalCTA"
 import { Footer } from "@/components/landing/Footer"
 import { Toaster } from "@/components/ui/sonner"
 import { AuthModal, type AuthUser } from "@/components/auth/AuthModal"
+import { AdminLoginModal } from "@/components/auth/AdminLoginModal"
 import { ClientPortal } from "@/components/portals/ClientPortal"
 import { AdminPortal } from "@/components/portals/AdminPortal"
 import { useKV } from "@github/spark/hooks"
@@ -14,6 +15,7 @@ import { toast } from "sonner"
 
 function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false)
+  const [adminModalOpen, setAdminModalOpen] = useState(false)
   const [currentUser, setCurrentUser] = useKV<AuthUser | null>("current-user", null)
   const [showPortal, setShowPortal] = useState(false)
 
@@ -48,6 +50,11 @@ function App() {
     toast.success(`Welcome ${user.role === "admin" ? "Admin" : "to your portal"}!`)
   }
 
+  const handleAdminAuthSuccess = (admin: AuthUser) => {
+    setCurrentUser(admin)
+    toast.success("Admin access granted!")
+  }
+
   const handleLogout = () => {
     setCurrentUser(null)
     setShowPortal(false)
@@ -70,6 +77,7 @@ function App() {
     <div className="min-h-screen bg-background">
       <Header 
         onAuthClick={() => setAuthModalOpen(true)}
+        onAdminClick={() => setAdminModalOpen(true)}
         onLogout={handleLogout}
         currentUser={currentUser ? { name: currentUser.name, role: currentUser.role } : null}
       />
@@ -83,6 +91,11 @@ function App() {
         open={authModalOpen}
         onOpenChange={setAuthModalOpen}
         onAuthSuccess={handleAuthSuccess}
+      />
+      <AdminLoginModal
+        open={adminModalOpen}
+        onOpenChange={setAdminModalOpen}
+        onAdminAuthSuccess={handleAdminAuthSuccess}
       />
     </div>
   )

@@ -12,12 +12,16 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 ## Essential Features
 
 ### Authentication System
-- **Functionality**: Secure login/signup system with role-based access (Client/Admin), email verification for new signups, password reset functionality, and automated email notifications
-- **Purpose**: Provide secure access to personalized portals for clients and administrative oversight for staff, ensure email ownership verification, secure password recovery, and automated communication
-- **Trigger**: Click "Sign Up / Login" button in header, or "Forgot password?" link on login form
-- **Progression**: User clicks button → Modal opens → Chooses login, signup, or password reset → Enters credentials/reset email → Validates → For new signups: receives verification email with 6-digit code → enters code in verification modal → email verified → receives welcome email → redirects to portal; For login: checks email verification → if unverified, prompts for verification → if verified, sends login alert → redirects to appropriate portal based on role
+- **Functionality**: Secure login/signup system with role-based access (Client/Admin), email verification for new signups, password reset functionality, automated email notifications, and dedicated admin login interface
+- **Purpose**: Provide secure access to personalized portals for clients and administrative oversight for staff, ensure email ownership verification, secure password recovery, automated communication, and enhanced security for admin access
+- **Trigger**: Click "Sign Up / Login" button for client access, "Admin" button for admin-only login, or "Forgot password?" link on login form
+- **Progression**: 
+  - **Client Path**: User clicks "Sign Up / Login" → Modal opens → Chooses login, signup, or password reset → Enters credentials/reset email → Validates → For new signups: receives verification email with 6-digit code → enters code in verification modal → email verified → receives welcome email → redirects to client portal; For login: checks email verification → if unverified, prompts for verification → if verified, sends login alert → redirects to client portal
+  - **Admin Path**: User clicks "Admin" button → Admin login modal opens → Enters admin credentials → System validates admin role → If verified admin, grants access to admin portal → Sends login alert
 - **Success criteria**: 
   - Secure authentication flow with role-based routing
+  - Separate admin login interface with shield icon and restricted access messaging
+  - Admin login only accepts accounts with admin role
   - Persistent sessions using useKV
   - Password validation (minimum 8 characters)
   - Error handling with helpful messages
@@ -31,6 +35,7 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
   - All email notifications logged and viewable in admin portal with filter for verification emails
   - Verification and password reset tokens stored securely and invalidated after use
   - Clear user messaging about verification requirement during signup and login attempts
+  - Admin button visible in header on desktop, hidden on mobile to save space
 
 ### Header Navigation
 - **Functionality**: Sticky header with brand name, prominent CTA button, and authentication button

@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button"
-import { Calendar, UserCircle } from "@phosphor-icons/react"
+import { Calendar, UserCircle, ShieldCheck } from "@phosphor-icons/react"
 
 interface HeaderProps {
   onAuthClick?: () => void
+  onAdminClick?: () => void
   onLogout?: () => void
   currentUser?: { name: string; role: string } | null
 }
 
-export function Header({ onAuthClick, onLogout, currentUser }: HeaderProps) {
+export function Header({ onAuthClick, onAdminClick, onLogout, currentUser }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -31,6 +32,16 @@ export function Header({ onAuthClick, onLogout, currentUser }: HeaderProps) {
             </>
           ) : (
             <>
+              <Button 
+                variant="ghost"
+                size="sm" 
+                className="hidden md:flex transition-all duration-200 text-muted-foreground hover:text-foreground"
+                onClick={onAdminClick}
+              >
+                <ShieldCheck className="mr-1.5" size={18} />
+                <span>Admin</span>
+              </Button>
+              
               <Button 
                 variant="outline"
                 size="sm" 
