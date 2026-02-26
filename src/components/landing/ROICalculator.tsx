@@ -3,15 +3,114 @@ import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
-import { ArrowRight, CheckCircle, TrendUp } from "@phosphor-icons/react"
+import { ArrowRight, CheckCircle, TrendUp, Wrench, HardHat, Hammer, Users, Briefcase } from "@phosphor-icons/react"
+
+type IndustryTemplate = {
+  id: string
+  name: string
+  icon: typeof Wrench
+  description: string
+  defaults: {
+    employeeCount: number
+    hoursPerWeekAdmin: number
+    avgHourlyRate: number
+    jobsPerMonth: number
+    lostJobsPerMonth: number
+    avgJobValue: number
+  }
+}
+
+const industryTemplates: IndustryTemplate[] = [
+  {
+    id: 'plumbing',
+    name: 'Plumbing & Heating',
+    icon: Wrench,
+    description: 'Emergency callouts, installations, and maintenance',
+    defaults: {
+      employeeCount: 4,
+      hoursPerWeekAdmin: 12,
+      avgHourlyRate: 40,
+      jobsPerMonth: 30,
+      lostJobsPerMonth: 3,
+      avgJobValue: 650
+    }
+  },
+  {
+    id: 'electrical',
+    name: 'Electrical Services',
+    icon: HardHat,
+    description: 'Commercial and domestic electrical work',
+    defaults: {
+      employeeCount: 6,
+      hoursPerWeekAdmin: 10,
+      avgHourlyRate: 45,
+      jobsPerMonth: 28,
+      lostJobsPerMonth: 2,
+      avgJobValue: 850
+    }
+  },
+  {
+    id: 'construction',
+    name: 'Construction & Builders',
+    icon: Hammer,
+    description: 'Renovations, extensions, and new builds',
+    defaults: {
+      employeeCount: 8,
+      hoursPerWeekAdmin: 15,
+      avgHourlyRate: 38,
+      jobsPerMonth: 12,
+      lostJobsPerMonth: 2,
+      avgJobValue: 2500
+    }
+  },
+  {
+    id: 'property',
+    name: 'Property Maintenance',
+    icon: Users,
+    description: 'Multi-property management and maintenance',
+    defaults: {
+      employeeCount: 5,
+      hoursPerWeekAdmin: 14,
+      avgHourlyRate: 32,
+      jobsPerMonth: 40,
+      lostJobsPerMonth: 4,
+      avgJobValue: 450
+    }
+  },
+  {
+    id: 'professional',
+    name: 'Professional Services',
+    icon: Briefcase,
+    description: 'Consulting, accounting, legal, and advisory',
+    defaults: {
+      employeeCount: 7,
+      hoursPerWeekAdmin: 16,
+      avgHourlyRate: 65,
+      jobsPerMonth: 20,
+      lostJobsPerMonth: 2,
+      avgJobValue: 1200
+    }
+  }
+]
 
 export function ROICalculator() {
+  const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null)
   const [employeeCount, setEmployeeCount] = useState(5)
   const [hoursPerWeekAdmin, setHoursPerWeekAdmin] = useState(10)
   const [avgHourlyRate, setAvgHourlyRate] = useState(35)
   const [jobsPerMonth, setJobsPerMonth] = useState(25)
   const [lostJobsPerMonth, setLostJobsPerMonth] = useState(2)
   const [avgJobValue, setAvgJobValue] = useState(800)
+
+  const applyTemplate = (template: IndustryTemplate) => {
+    setSelectedIndustry(template.id)
+    setEmployeeCount(template.defaults.employeeCount)
+    setHoursPerWeekAdmin(template.defaults.hoursPerWeekAdmin)
+    setAvgHourlyRate(template.defaults.avgHourlyRate)
+    setJobsPerMonth(template.defaults.jobsPerMonth)
+    setLostJobsPerMonth(template.defaults.lostJobsPerMonth)
+    setAvgJobValue(template.defaults.avgJobValue)
+  }
 
   const calculations = useMemo(() => {
     const weeklyAdminCost = hoursPerWeekAdmin * avgHourlyRate
@@ -71,6 +170,44 @@ export function ROICalculator() {
           </h2>
           <p className="text-lg text-secondary max-w-2xl mx-auto leading-relaxed">
             See how much time and money you could save with proper systems in place.
+          </p>
+        </div>
+
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-foreground mb-4 text-center">
+            Choose Your Industry Template
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+            {industryTemplates.map((template) => {
+              const Icon = template.icon
+              const isSelected = selectedIndustry === template.id
+              return (
+                <button
+                  key={template.id}
+                  onClick={() => applyTemplate(template)}
+                  className={`p-4 rounded-lg border-2 transition-all duration-200 text-left hover:shadow-md ${
+                    isSelected
+                      ? 'border-accent bg-accent/10 shadow-md'
+                      : 'border-border bg-background hover:border-accent/50'
+                  }`}
+                >
+                  <Icon
+                    size={32}
+                    weight="duotone"
+                    className={`mb-2 ${isSelected ? 'text-accent' : 'text-muted-foreground'}`}
+                  />
+                  <h4 className="font-semibold text-sm text-foreground mb-1">
+                    {template.name}
+                  </h4>
+                  <p className="text-xs text-muted-foreground leading-snug">
+                    {template.description}
+                  </p>
+                </button>
+              )
+            })}
+          </div>
+          <p className="text-sm text-muted-foreground text-center mt-4">
+            Select a template to see industry-specific estimates, or customize the values below
           </p>
         </div>
 
