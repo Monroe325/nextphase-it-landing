@@ -1,23 +1,23 @@
-<svg width="1366" height="768" viewBox="0 0 1366 768" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="300" viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g id="logo">
-    <path d="M340.5 311.5L398.5 275L456.5 311.5V384.5L398.5 421L340.5 384.5V311.5Z" fill="url(#paint0_linear)"/>
-    <path d="M398.5 275V348L456.5 384.5V311.5L398.5 275Z" fill="url(#paint1_linear)"/>
-    <path d="M398.5 348L340.5 384.5V311.5L398.5 275V348Z" fill="url(#paint2_linear)"/>
-    <text x="565" y="420" font-family="Inter, sans-serif" font-size="120" font-weight="700" fill="#2D3748">NextPhase</text>
-    <text x="565" y="540" font-family="Inter, sans-serif" font-size="120" font-weight="700" fill="#4F46E5">IT</text>
-    <path d="M365 325L380 315V360L365 370V325Z" fill="white"/>
-    <path d="M415 315L430 325V370L415 360V315Z" fill="white"/>
+    <path d="M30 80L70 55L110 80V130L70 155L30 130V80Z" fill="url(#paint0_linear)"/>
+    <path d="M70 55V105L110 130V80L70 55Z" fill="url(#paint1_linear)"/>
+    <path d="M70 105L30 130V80L70 55V105Z" fill="url(#paint2_linear)"/>
+    <text x="145" y="130" font-family="Inter, sans-serif" font-size="70" font-weight="700" fill="#2D3748">NextPhase</text>
+    <text x="145" y="200" font-family="Inter, sans-serif" font-size="70" font-weight="700" fill="#4F46E5">IT</text>
+    <path d="M48 90L58 83V113L48 120V90Z" fill="white"/>
+    <path d="M82 83L92 90V120L82 113V83Z" fill="white"/>
   </g>
   <defs>
-    <linearGradient id="paint0_linear" x1="340.5" y1="311.5" x2="456.5" y2="384.5" gradientUnits="userSpaceOnUse">
+    <linearGradient id="paint0_linear" x1="30" y1="80" x2="110" y2="130" gradientUnits="userSpaceOnUse">
       <stop stop-color="#3B82F6"/>
       <stop offset="1" stop-color="#4F46E5"/>
     </linearGradient>
-    <linearGradient id="paint1_linear" x1="398.5" y1="275" x2="456.5" y2="384.5" gradientUnits="userSpaceOnUse">
+    <linearGradient id="paint1_linear" x1="70" y1="55" x2="110" y2="130" gradientUnits="userSpaceOnUse">
       <stop stop-color="#4F46E5"/>
       <stop offset="1" stop-color="#6366F1"/>
     </linearGradient>
-    <linearGradient id="paint2_linear" x1="340.5" y1="311.5" x2="398.5" y2="348" gradientUnits="userSpaceOnUse">
+    <linearGradient id="paint2_linear" x1="30" y1="80" x2="70" y2="105" gradientUnits="userSpaceOnUse">
       <stop stop-color="#2563EB"/>
       <stop offset="1" stop-color="#3B82F6"/>
     </linearGradient>
