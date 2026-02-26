@@ -18,7 +18,7 @@ export function Hero() {
           <Button 
             size="lg" 
             className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-5 h-auto transition-all duration-200"
-            onClick={() => window.open('https://calendly.com/nextphaseit', '_blank')}
+            onClick={() => window.open('https://cal.com/nextphaseit', '_blank')}
           >
             <Calendar className="mr-2" size={20} />
             Book a Free Systems Audit

@@ -12,7 +12,7 @@ export function Header() {
         <Button 
           size="sm" 
           className="bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-200"
-          onClick={() => window.open('https://calendly.com/nextphaseit', '_blank')}
+          onClick={() => window.open('https://cal.com/nextphaseit', '_blank')}
         >
           <Calendar className="mr-2" size={20} />
           <span className="hidden sm:inline">Book Free Audit</span>
