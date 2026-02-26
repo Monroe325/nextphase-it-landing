@@ -11,12 +11,19 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 
 ## Essential Features
 
+### Authentication System
+- **Functionality**: Secure login/signup system with role-based access (Client/Admin)
+- **Purpose**: Provide secure access to personalized portals for clients and administrative oversight for staff
+- **Trigger**: Click "Sign Up / Login" button in header
+- **Progression**: User clicks button → Modal opens → Chooses login or signup → Enters credentials → Validates → Redirects to appropriate portal based on role
+- **Success criteria**: Secure authentication flow, role-based routing, persistent sessions using useKV, password validation, error handling
+
 ### Header Navigation
-- **Functionality**: Sticky header with brand name and prominent CTA button
-- **Purpose**: Maintain brand presence and conversion opportunity throughout page scroll
+- **Functionality**: Sticky header with brand name, prominent CTA button, and authentication button
+- **Purpose**: Maintain brand presence, conversion opportunity, and portal access throughout page scroll
 - **Trigger**: Page load, persistent on scroll
-- **Progression**: Always visible → Quick access to booking
-- **Success criteria**: Sticky positioning, responsive on mobile, accessible CTA
+- **Progression**: Always visible → Quick access to booking and authentication
+- **Success criteria**: Sticky positioning, responsive on mobile, accessible CTAs, auth button next to booking CTA
 
 ### Hero Section
 - **Functionality**: Presents core value proposition with primary CTA options
@@ -94,6 +101,35 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Trigger**: End of content journey
 - **Progression**: Visitor convinced → Sees CTA options → Chooses preferred contact method → Takes action
 - **Success criteria**: CTA is compelling and action-oriented, contact form available as alternative, submissions persist
+
+### Client Portal
+- **Functionality**: Secure dashboard for authenticated clients with project management and communication tools
+- **Purpose**: Provide clients with real-time project visibility, booking management, document access, and direct communication with NextPhase IT team
+- **Trigger**: Successful login with client role
+- **Progression**: Client logs in → Views dashboard with project status → Navigates to sections (Dashboard, Bookings, Documents, Messages, Project Tracker) → Manages bookings, views documents, sends messages, tracks project progress
+- **Success criteria**: 
+  - Dashboard displays current project status, milestones, and next steps with visual progress indicators
+  - Booking system allows scheduling/rescheduling audit calls with calendar integration
+  - Documents section provides organized access to proposals, invoices, and contracts with download capability
+  - Real-time messaging interface for direct communication with team, threaded conversations
+  - Live project tracker showing deliverables, deadlines, completion percentages, and status indicators
+  - Mobile-responsive layout, secure data access, persistent state across sessions
+
+### Admin Portal
+- **Functionality**: Comprehensive administrative dashboard with full system oversight and management capabilities
+- **Purpose**: Enable NextPhase IT staff to manage users, monitor all activities, track leads, oversee projects, and analyze business metrics
+- **Trigger**: Successful login with admin role
+- **Progression**: Admin logs in → Views system overview dashboard → Navigates sections (Users, Conversations, Bookings, Projects, Leads, Invoices, Analytics, Notifications) → Performs administrative tasks
+- **Success criteria**:
+  - User management interface to view, edit, suspend/activate client accounts with search and filtering
+  - Complete conversation transcript access across all clients with search functionality
+  - Booking management dashboard showing all appointments with status tracking and calendar view
+  - Project overview with all client projects, statuses, deadlines, and resource allocation
+  - Lead tracking pipeline with stages (New, Contacted, Qualified, Proposal, Won, Lost) and drag-drop updates
+  - Invoice and payment monitoring with status tracking, overdue alerts, and financial summaries
+  - Analytics dashboard displaying traffic sources, conversion rates, booking trends, and revenue metrics
+  - Notification center with real-time alerts for signups, bookings, messages, payments, and system events
+  - Secure admin-only access with audit logging, export capabilities, mobile-responsive interface
 
 ### Footer
 - **Functionality**: Standard footer with business information and feature badges
