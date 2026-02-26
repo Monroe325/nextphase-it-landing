@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Calendar, UserCircle, ShieldCheck } from "@phosphor-icons/react"
+import logo from "@/assets/images/NextPhase IT logo image.png"
 
 interface HeaderProps {
   onAuthClick?: () => void
@@ -14,7 +15,7 @@ export function Header({ onAuthClick, onAdminClick, onLogout, currentUser }: Hea
       <div className="max-w-7xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img 
-            src="https://raw.githubusercontent.com/Monroe325/nextphase-it-landing/main/NextPhase%20IT%20logo%20image.png"
+            src={logo}
             alt="NextPhase IT"
             style={{
               height: '52px',
