@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { Calendar, UserCircle, ShieldCheck } from "@phosphor-icons/react"
-import logo from "@/assets/images/logo.svg"
 
 interface HeaderProps {
   onAuthClick?: () => void
@@ -14,7 +13,7 @@ export function Header({ onAuthClick, onAdminClick, onLogout, currentUser }: Hea
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-7xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="NextPhase IT Logo" className="h-[60px] w-auto" />
+          <span className="text-xl font-bold text-foreground">NextPhase IT</span>
         </div>
         
         <div className="flex items-center gap-2">
