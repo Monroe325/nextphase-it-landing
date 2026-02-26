@@ -243,9 +243,10 @@ export function InteractiveTabs() {
   }
 
   const steps = [
-    { icon: MagnifyingGlass, title: "Audit", description: "Analyse operations & identify bottlenecks" },
-    { icon: Wrench, title: "Build", description: "Deploy custom systems with full migration" },
-    { icon: GraduationCap, title: "Train", description: "Hands-on training & ongoing support" }
+    { icon: MagnifyingGlass, title: "Step 1 – Systems Audit", description: "Analyse operations & identify bottlenecks" },
+    { icon: CheckCircle, title: "Step 2 – System Proposal", description: "Custom solution design & approval" },
+    { icon: Wrench, title: "Step 3 – Build & Deploy", description: "Implementation with full migration" },
+    { icon: GraduationCap, title: "Step 4 – Ongoing Support", description: "Training, maintenance & optimization" }
   ]
 
   const outcomes = [
@@ -333,7 +334,7 @@ export function InteractiveTabs() {
           </TabsList>
 
           <TabsContent value="process" className="space-y-8">
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {steps.map((step, index) => {
                 const Icon = step.icon
                 return (
