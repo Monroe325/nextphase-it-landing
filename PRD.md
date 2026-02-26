@@ -53,6 +53,13 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Progression**: Visitor understands process → Reviews pricing options → Identifies appropriate tier → Takes action to book or contact
 - **Success criteria**: Clear differentiation between tiers, transparent pricing, obvious value propositions, "Most Popular" tier highlighted
 
+### ROI Calculator Section
+- **Functionality**: Interactive calculator allowing visitors to input their business metrics and see projected savings and ROI
+- **Purpose**: Provide concrete, personalized financial justification for the investment decision
+- **Trigger**: Scroll after pricing section
+- **Progression**: Visitor sees pricing → Uses calculator with their own numbers → Sees personalized ROI projections → Understands tangible value → Motivated to take action
+- **Success criteria**: Intuitive inputs (sliders and number fields), real-time calculation updates, clear display of savings breakdown, compelling ROI presentation, CTA button at bottom
+
 ### Outcomes Section
 - **Functionality**: Presents specific, measurable results
 - **Purpose**: Demonstrate tangible value and ROI
@@ -151,6 +158,7 @@ Animations should be **nearly invisible**—serving clarity and feedback, never 
   - Solution section with service cards in grid layout
   - Process section with numbered step cards
   - Pricing section with three-tier package table (Systems Audit, Core Build, Enterprise Build) featuring highlighted "Most Popular" option, feature lists with checkmarks, and clear CTA buttons
+  - ROI Calculator section with interactive inputs (sliders for employees/hours/lost jobs, number inputs for rates/values), real-time calculation display showing current waste vs potential savings, detailed breakdown of gains (time reclaimed, jobs captured, invoicing improvements), first-year ROI projection with payback timeline, and CTA button
   - Outcomes section with metric/result cards
   - Testimonials section with quote cards in 3-column grid
   - Target client section with profile cards
