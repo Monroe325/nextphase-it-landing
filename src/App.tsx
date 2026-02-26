@@ -2,6 +2,7 @@ import { Header } from "@/components/landing/Header"
 import { Hero } from "@/components/landing/Hero"
 import { Problem } from "@/components/landing/Problem"
 import { Process } from "@/components/landing/Process"
+import { Pricing } from "@/components/landing/Pricing"
 import { Testimonials } from "@/components/landing/Testimonials"
 import { FAQ } from "@/components/landing/FAQ"
 import { FinalCTA } from "@/components/landing/FinalCTA"
@@ -15,6 +16,7 @@ function App() {
       <Hero />
       <Problem />
       <Process />
+      <Pricing />
       <Testimonials />
       <FAQ />
       <FinalCTA />

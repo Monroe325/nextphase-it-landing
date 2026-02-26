@@ -46,6 +46,13 @@ A professional B2B technology consultancy landing page for NextPhase IT, helping
 - **Progression**: Visitor interested → Learns process → Understands next steps
 - **Success criteria**: Process feels structured, professional, and low-risk
 
+### Pricing Section
+- **Functionality**: Displays three service package tiers with clear pricing and features
+- **Purpose**: Establish transparency, help visitors understand investment levels, and facilitate decision-making
+- **Trigger**: Scroll after process section
+- **Progression**: Visitor understands process → Reviews pricing options → Identifies appropriate tier → Takes action to book or contact
+- **Success criteria**: Clear differentiation between tiers, transparent pricing, obvious value propositions, "Most Popular" tier highlighted
+
 ### Outcomes Section
 - **Functionality**: Presents specific, measurable results
 - **Purpose**: Demonstrate tangible value and ROI
@@ -143,6 +150,7 @@ Animations should be **nearly invisible**—serving clarity and feedback, never 
   - Problem section with icon + text list items
   - Solution section with service cards in grid layout
   - Process section with numbered step cards
+  - Pricing section with three-tier package table (Systems Audit, Core Build, Enterprise Build) featuring highlighted "Most Popular" option, feature lists with checkmarks, and clear CTA buttons
   - Outcomes section with metric/result cards
   - Testimonials section with quote cards in 3-column grid
   - Target client section with profile cards
