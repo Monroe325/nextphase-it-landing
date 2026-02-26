@@ -12,10 +12,10 @@ export function Footer() {
           <div className="text-center md:text-right">
             <p className="text-secondary text-sm mb-1">
               <a 
-                href="mailto:contact@nextphaseit.co.uk" 
+                href="mailto:info@nextphaseit.co.uk" 
                 className="hover:text-accent transition-colors duration-200"
               >
-                contact@nextphaseit.co.uk
+                info@nextphaseit.co.uk
               </a>
             </p>
             <p className="text-muted-foreground text-sm">

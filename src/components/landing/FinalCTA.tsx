@@ -4,32 +4,32 @@ import { ContactForm } from "./ContactForm"
 
 export function FinalCTA() {
   return (
-    <section className="py-12 md:py-16 px-4 bg-muted">
+    <section className="py-10 md:py-14 px-4 bg-muted">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
           Ready to Transform Your Operations?
         </h2>
         
-        <p className="text-lg text-secondary mb-8">
+        <p className="text-base text-secondary mb-6">
           Book a free systems audit or send us a message.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
           <Button 
             size="lg" 
-            className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-6 h-auto transition-all duration-200"
+            className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-5 h-auto transition-all duration-200"
             onClick={() => window.open('https://calendly.com/nextphaseit', '_blank')}
           >
-            <Calendar className="mr-2" size={20} />
+            <Calendar className="mr-2" size={18} />
             Book Free Audit
           </Button>
           <Button 
             size="lg" 
             variant="outline"
-            className="px-6 py-6 h-auto"
+            className="px-6 py-5 h-auto"
             onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            <Envelope className="mr-2" size={20} />
+            <Envelope className="mr-2" size={18} />
             Send Message
           </Button>
         </div>
