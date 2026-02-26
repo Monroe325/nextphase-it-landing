@@ -6,6 +6,7 @@ import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle, TrendUp, Wrench, HardHat, Hammer, Users, Briefcase, Link as LinkIcon, Check } from "@phosphor-icons/react"
 import { toast } from "sonner"
+import { ShareButtons } from "./ShareButtons"
 
 type IndustryTemplate = {
   id: string
@@ -374,29 +375,36 @@ export function ROICalculator() {
 
           <div className="space-y-6">
             <Card className="p-6 md:p-8 border-2 border-accent bg-background shadow-lg">
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
                 <div className="flex items-center gap-3">
                   <TrendUp className="text-accent" size={28} weight="duotone" />
                   <h3 className="text-xl font-bold text-foreground">Your Projected Impact</h3>
                 </div>
-                <Button
-                  onClick={copyShareLink}
-                  variant="outline"
-                  size="sm"
-                  className="gap-2"
-                >
-                  {linkCopied ? (
-                    <>
-                      <Check size={16} weight="bold" />
-                      Copied
-                    </>
-                  ) : (
-                    <>
-                      <LinkIcon size={16} weight="bold" />
-                      Share
-                    </>
-                  )}
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button
+                    onClick={copyShareLink}
+                    variant="outline"
+                    size="sm"
+                    className="gap-2"
+                  >
+                    {linkCopied ? (
+                      <>
+                        <Check size={16} weight="bold" />
+                        Copied
+                      </>
+                    ) : (
+                      <>
+                        <LinkIcon size={16} weight="bold" />
+                        Copy
+                      </>
+                    )}
+                  </Button>
+                  <ShareButtons 
+                    url={generateShareableLink()}
+                    title="NextPhase IT ROI Calculator"
+                    description={`See how I could save ${formatCurrency(calculations.firstYearROI)} in year one with NextPhase IT business systems`}
+                  />
+                </div>
               </div>
 
               <div className="space-y-4 mb-6">
